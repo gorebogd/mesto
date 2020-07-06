@@ -1,0 +1,13 @@
+@import url(./__grid/cards__grid.css);
+@import url(./__card/cards__card.css);
+@import url(./__image/cards__image.css);
+@import url(./__info/cards__info.css);
+@import url(./__title/cards__title.css);
+@import url(./__like-button/cards__like-button.css);
+
+.cards {
+    max-width: 882px;
+    width: 100%;
+    margin: 0 auto;
+}
+

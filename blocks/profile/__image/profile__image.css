@@ -1,0 +1,14 @@
+.profile__image {
+    max-width: 120px;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 30px;
+}
+
+@media (max-width: 660px) {
+    .profile__image {
+        margin: 0 auto 14px;
+
+    }
+}
