@@ -9,3 +9,9 @@
     margin: 0;
     margin-bottom: 54px;
 }
+
+@media (max-width: 660px) {
+    .popup__title {
+        font-size: 18px;
+    }
+}
