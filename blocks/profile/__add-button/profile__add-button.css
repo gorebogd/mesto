@@ -5,8 +5,9 @@
     background-repeat: no-repeat;
     background-position: center;
     border: 2px solid #FFFFFF;
+    border-radius: 2px;
     box-sizing: border-box;
-    background-color: black;
+    background-color: transparent;
     outline: none;
     cursor: pointer;
 
