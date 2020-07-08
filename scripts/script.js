@@ -27,18 +27,12 @@ function profileSubmit (event) {
     popupToggle();
 }
 
-function remove () {
-    inputName.parentNode.removeChild(inputName);
-    inputJob.parentNode.removeChild(inputJob);
-}
-
 function addPopupToggle () {
     popupToggle();
-    remove();
+    inputName.parentNode.removeChild(inputName);
+    inputJob.parentNode.removeChild(inputJob);
     title.textContent = a;
     submitButton.textContent = b;
-    
-
 }
 
 editButton.addEventListener('click', popupToggle);
