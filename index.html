@@ -31,72 +31,6 @@
         </section>
         <section class="cards">
           <div class="cards__grid">
-            <div class="cards__card">
-              <img
-                src="./images/karachevsk.jpg"
-                alt="Карачевск"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Карачаевск</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
-            <div class="cards__card">
-              <img
-                src="./images/elbrus.jpg"
-                alt="Эльбрус"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Гора Эльбрус</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
-            <div class="cards__card">
-              <img
-                src="./images/dombai.jpg"
-                alt="Домбай"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Домбай</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
-            <div class="cards__card">
-              <img
-                src="./images/elbrus.jpg"
-                alt="Эльбрус"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Гора Эльбрус</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
-            <div class="cards__card">
-              <img
-                src="./images/dombai.jpg"
-                alt="Домбай"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Домбай</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
-            <div class="cards__card">
-              <img
-                src="./images/karachevsk.jpg"
-                alt="Карачевск"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__title">Карачаевск</h2>
-                <button type="button" class="cards__like-button"></button>
-              </div>
-            </div>
           </div>
         </section>
       </main>
@@ -104,7 +38,7 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -127,6 +61,56 @@
         </form>
       </div>
     </div>
-    <script src="./scripts/script.js"></script>
+
+    <div class="popup popup_type_add-card">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form action="#" class="popup__form">
+          <input
+            name="place"
+            type="text"
+            value=""
+            placeholder="Название"
+            class="popup__input-text popup__input-text_type_place"
+          />
+          <input
+            name="image"
+            type="text"
+            value=""
+            placeholder="Ссылка на картинку"
+            class="popup__input-text popup__input-text_type_url"
+          />
+          <button type="submit" class="popup__submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_image">
+      <div class="popup__container_type_image">
+        <button type="button" class="popup__close-button"></button>
+        <figure class="popup__figure">
+          <img src="" alt="Фото места" class="popup__image">
+          <figcaption class="popup__description"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <template class="cards-template">
+      <div class="cards__card">
+        <button type="button" class="cards__delete-button"></button>
+        <img
+          src=""
+          alt=""
+          class="cards__image"
+        />
+        <div class="cards__info">
+          <h2 class="cards__title"></h2>
+          <button type="button" class="cards__like-button"></button>
+        </div>
+      </div>
+    </template>
+
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

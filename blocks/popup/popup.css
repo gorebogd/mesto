@@ -1,10 +1,14 @@
 @import url(./__container/popup__container.css);
+@import url(./__container/_type/popup__container_type_image.css);
 @import url(./__form/popup__form.css);
 @import url(./__title/popup__title.css);
 @import url(./__input-text/popup__input-text.css);
 @import url(./__submit/popup__submit.css);
 @import url(./__close-button/popup__close-button.css);
 @import url(./_active/popup_opened.css);
+@import url(./__figure/popup__figure.css);
+@import url(./__image/popup__image.css);
+@import url(./__description/popup__description.css);
 
 .popup {
     top: 0;
