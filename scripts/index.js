@@ -97,7 +97,7 @@ const initialCards = [
   function renderCard(data) {
     cardsList.prepend(createCard(data));
 
-  };
+  }
 
 
   function createCard (data) {
