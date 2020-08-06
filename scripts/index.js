@@ -35,6 +35,7 @@ function popupToggle (popup) {
     popup.classList.toggle('popup_opened');
 }
 
+
 function profileSubmit (event) {
     event.preventDefault();
     profileName.textContent = inputName.value;
@@ -130,4 +131,29 @@ const initialCards = [
   });
 
 
+  addCardPopup.addEventListener('click', (event) => {
+    closeByOverlay(event);
+});
 
+  imagePopup.addEventListener('click', (event) => {
+    closeByOverlay(event);
+});
+
+  editProfilePopup.addEventListener('click', (event) => {
+    closeByOverlay(event);
+});
+
+
+function popupCloseByEsc(event) {
+  if (event.key === 'Escape') {
+      document.querySelector('.popup_opened').classList.remove('popup_opened');
+  }
+}
+
+document.addEventListener('keydown', popupCloseByEsc);
+
+function closeByOverlay(event) {
+    if (event.target.classList.contains('popup_opened')) {
+      event.target.classList.remove('popup_opened');
+  }      
+}

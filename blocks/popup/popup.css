@@ -3,12 +3,18 @@
 @import url(./__form/popup__form.css);
 @import url(./__title/popup__title.css);
 @import url(./__input-text/popup__input-text.css);
+@import url(./__input-text/_type/popup__input-text_type_error.css);
 @import url(./__submit/popup__submit.css);
+@import url(./__submit/_disabled/popup__submit_disabled.css);
 @import url(./__close-button/popup__close-button.css);
 @import url(./_opened/popup_opened.css);
 @import url(./__figure/popup__figure.css);
 @import url(./__image/popup__image.css);
 @import url(./__description/popup__description.css);
+@import url(./__error/popup__error.css);
+@import url(./__error/_active/popup__error_active.css);
+
+
 
 .popup {
     top: 0;

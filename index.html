@@ -42,46 +42,65 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="#" class="popup__form">
+        <form action="#" class="popup__form" novalidate>
           <input
             name="name"
             type="text"
             value="Жак-Ив Кусто"
             placeholder="Имя"
             class="popup__input-text popup__input-text_type_name"
+            minlength="2"
+            maxlength="40"
+            autocomplete="off"
+            required
           />
+          <span id="name-error" class='popup__error'></span>
           <input
             name="job"
             type="text"
             value="Исследователь океана"
             placeholder="Профессия"
             class="popup__input-text popup__input-text_type_job"
+            minlength="2"
+            maxlength="200"
+            autocomplete="off"
+            required
           />
-          <button type="submit" class="popup__submit">Сохранить</button>
+          <span id="job-error" class='popup__error'></span>
+          <button type="submit" class="popup__submit popup__submit_disabled" disabled>Сохранить</button>
         </form>
       </div>
     </div>
 
     <div class="popup popup_type_add-card">
       <div class="popup__container">
+
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form action="#" class="popup__form">
+        <form action="#" class="popup__form" novalidate>
           <input
             name="place"
             type="text"
             value=""
             placeholder="Название"
             class="popup__input-text popup__input-text_type_place"
+            minlength="1"
+            maxlength="30"
+            autocomplete="off"
+            required
           />
+          <span id="place-error" class='popup__error'></span>
           <input
             name="image"
-            type="text"
+            type="url"
             value=""
             placeholder="Ссылка на картинку"
             class="popup__input-text popup__input-text_type_url"
+            autocomplete="off"
+            required
           />
-          <button type="submit" class="popup__submit">Создать</button>
+          <span id="image-error" class='popup__error '></span>
+          <button type="submit" class="popup__submit popup__submit_disabled" disabled>Создать</button>
         </form>
       </div>
     </div>
@@ -112,5 +131,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>
