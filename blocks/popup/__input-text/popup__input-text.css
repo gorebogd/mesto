@@ -1,17 +1,16 @@
 .popup__input-text {
     width: 100%;
-    padding-bottom: 16px;
+    box-sizing: border-box;
+    padding: 12px 0;
+    margin-bottom: 4px;
     border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
     font-size: 14px;
     line-height: 17px;
-    color: #000000;
-    outline-color: rgba(0, 0, 0, .2);
-    min-height: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
-    margin-bottom: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    outline: none;
 }
 
-.popup__input-text:last-of-type {
-    margin-bottom: 0;
-}
 
