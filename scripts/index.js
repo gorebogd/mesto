@@ -45,19 +45,25 @@ function resetInputError(inputElement, inputElementError) {
 }
 
 function resetFormInputs(popup) {
-    const input = Array.from(popup.querySelectorAll('.popup__input-text'));
-    input.forEach((inputElement) => {
+    const inputList = Array.from(popup.querySelectorAll('.popup__input-text'));
+    inputList.forEach((inputElement) => {
         const inputError = popup.querySelector(`#${inputElement.name}-error`)
         if (inputElement.validity.valid) {
             resetInputError(inputElement, inputError)
         }
-    })
+    });
+    if (popup.classList.contains('popup_type_add-card')) {
+        inputList.forEach((inputElement) => {
+            const inputError = popup.querySelector(`#${inputElement.name}-error`)
+            resetInputError(inputElement, inputError)
+        })
+    }
 }
 
 function submitButtonActivation() {
     if (inputName.validity.valid && inputJob.validity.valid) {
         editPopupSubmitButton.disabled = false;
-        editPopupSubmitButton.classList.remove('submit__button_disabled');
+        editPopupSubmitButton.classList.remove('popup__submit_disabled');
     }
 }
 
