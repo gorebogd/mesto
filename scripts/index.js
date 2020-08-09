@@ -68,17 +68,24 @@ function submitButtonActivation() {
 }
 
 function togglePopup(popup) {
-    if (popup.classList.contains('popup_type_add-card')) {
-        addPopupForm.reset();
-    }
-    if (!popup.classList.contains('popup_opened')) {
-        inputName.value = profileName.textContent;
-        inputJob.value = profileJob.textContent;
-    }
     popup.classList.toggle('popup_opened');
+}
+
+function toggleEditProfilePopup () {
+    togglePopup(editProfilePopup);
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
     submitButtonActivation();
-    setPopupEventListener(popup);
-    resetFormInputs(popup);
+    setPopupEventListener(editProfilePopup);
+    resetFormInputs(editProfilePopup);
+}
+
+function toggleAddCardPopup () {
+    togglePopup(addCardPopup);
+    addPopupForm.reset();
+    submitButtonActivation();
+    setPopupEventListener(addCardPopup);
+    resetFormInputs(addCardPopup);
 }
 
 function submitProfile(event) {
@@ -98,16 +105,16 @@ function submitAddCard(event) {
 }
 
 editButton.addEventListener('click', () => {
-    togglePopup(editProfilePopup);
+    toggleEditProfilePopup();
 });
 editCloseButton.addEventListener('click', () => {
-    togglePopup(editProfilePopup);
+    toggleEditProfilePopup();
 });
 addButton.addEventListener('click', () => {
-    togglePopup(addCardPopup);
+    toggleAddCardPopup();
 });
 addCloseButton.addEventListener('click', () => {
-    togglePopup(addCardPopup);
+    toggleAddCardPopup();
 });
 imageCloseButton.addEventListener('click', () => {
     togglePopup(imagePopup);
@@ -170,6 +177,11 @@ imagePopup.addEventListener('click', (event) => {
 editProfilePopup.addEventListener('click', (event) => {
     closeByOverlay(event);
 });
+
+
+
+
+
 
 
 
