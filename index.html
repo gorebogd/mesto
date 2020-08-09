@@ -1,136 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./pages/index.css"/>
     <title>Mesto</title>
-  </head>
-  <body class="page">
-    <div class="content">
-      <header class="header">
-        <img src="./images/logo.svg" alt="Проект Mesto" class="header__logo" />
-      </header>
-      <main class="main">
+</head>
+<body class="page">
+<div class="content">
+    <header class="header">
+        <img src="./images/logo.svg" alt="Проект Mesto" class="header__logo"/>
+    </header>
+    <main class="main">
         <section class="profile">
-          <div class="profile__container">
-            <img
-              src="./images/cousteau.jpg"
-              alt="Аватар"
-              class="profile__image"
-            />
-            <div class="profile__block">
-              <div class="profile__info">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-button"></button>
-              </div>
-              <p class="profile__description">Исследователь океана</p>
+            <div class="profile__container">
+                <img
+                        src="./images/cousteau.jpg"
+                        alt="Аватар"
+                        class="profile__image"
+                />
+                <div class="profile__block">
+                    <div class="profile__info">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button"></button>
+                    </div>
+                    <p class="profile__description">Исследователь океана</p>
+                </div>
+                <button type="button" class="profile__add-button"></button>
             </div>
-            <button type="button" class="profile__add-button"></button>
-          </div>
         </section>
         <section class="cards">
-          <div class="cards__grid">
-          </div>
+            <div class="cards__grid">
+            </div>
         </section>
-      </main>
-      <footer class="footer">
+    </main>
+    <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
-    </div>
-    <div class="popup popup_type_edit-profile">
-      <div class="popup__container">
+    </footer>
+</div>
+<div class="popup popup_type_edit-profile">
+    <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form action="#" class="popup__form" novalidate>
-          <input
-            name="name"
-            type="text"
-            value="Жак-Ив Кусто"
-            placeholder="Имя"
-            class="popup__input-text popup__input-text_type_name"
-            minlength="2"
-            maxlength="40"
-            autocomplete="off"
-            required
-          />
-          <span id="name-error" class='popup__error'></span>
-          <input
-            name="job"
-            type="text"
-            value="Исследователь океана"
-            placeholder="Профессия"
-            class="popup__input-text popup__input-text_type_job"
-            minlength="2"
-            maxlength="200"
-            autocomplete="off"
-            required
-          />
-          <span id="job-error" class='popup__error'></span>
-          <button type="submit" class="popup__submit">Сохранить</button>
+            <input
+                    name="name"
+                    type="text"
+                    value="Жак-Ив Кусто"
+                    placeholder="Имя"
+                    class="popup__input-text popup__input-text_type_name"
+                    minlength="2"
+                    maxlength="40"
+                    autocomplete="off"
+                    required
+            />
+            <span id="name-error" class='popup__error'></span>
+            <input
+                    name="job"
+                    type="text"
+                    value="Исследователь океана"
+                    placeholder="Профессия"
+                    class="popup__input-text popup__input-text_type_job"
+                    minlength="2"
+                    maxlength="200"
+                    autocomplete="off"
+                    required
+            />
+            <span id="job-error" class='popup__error'></span>
+            <button type="submit" class="popup__submit">Сохранить</button>
         </form>
-      </div>
     </div>
+</div>
 
-    <div class="popup popup_type_add-card">
-      <div class="popup__container">
+<div class="popup popup_type_add-card">
+    <div class="popup__container">
 
         <button type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Новое место</h2>
         <form action="#" class="popup__form" novalidate>
-          <input
-            name="place"
-            type="text"
-            value=""
-            placeholder="Название"
-            class="popup__input-text popup__input-text_type_place"
-            minlength="1"
-            maxlength="30"
-            autocomplete="off"
-            required
-          />
-          <span id="place-error" class='popup__error'></span>
-          <input
-            name="image"
-            type="url"
-            value=""
-            placeholder="Ссылка на картинку"
-            class="popup__input-text popup__input-text_type_url"
-            autocomplete="off"
-            required
-          />
-          <span id="image-error" class='popup__error '></span>
-          <button type="submit" class="popup__submit popup__submit_disabled" disabled>Создать</button>
+            <input
+                    name="place"
+                    type="text"
+                    value=""
+                    placeholder="Название"
+                    class="popup__input-text popup__input-text_type_place"
+                    minlength="1"
+                    maxlength="30"
+                    autocomplete="off"
+                    required
+            />
+            <span id="place-error" class='popup__error'></span>
+            <input
+                    name="image"
+                    type="url"
+                    value=""
+                    placeholder="Ссылка на картинку"
+                    class="popup__input-text popup__input-text_type_url"
+                    autocomplete="off"
+                    required
+            />
+            <span id="image-error" class='popup__error '></span>
+            <button type="submit" class="popup__submit popup__submit_disabled" disabled>Создать</button>
         </form>
-      </div>
     </div>
+</div>
 
-    <div class="popup popup_type_image">
-      <div class="popup__container_type_image">
+<div class="popup popup_type_image">
+    <div class="popup__container_type_image">
         <button type="button" class="popup__close-button"></button>
         <figure class="popup__figure">
-          <img src="" alt="Полноформатное фото места" class="popup__image">
-          <figcaption class="popup__description"></figcaption>
+            <img src="" alt="Полноформатное фото места" class="popup__image">
+            <figcaption class="popup__description"></figcaption>
         </figure>
-      </div>
     </div>
+</div>
 
-    <template class="cards-template">
-      <div class="cards__card">
+<template class="cards-template">
+    <div class="cards__card">
         <button type="button" class="cards__delete-button"></button>
         <img
-          src=""
-          alt="Фото места"
-          class="cards__image"
+                src=""
+                alt="Фото места"
+                class="cards__image"
         />
         <div class="cards__info">
-          <h2 class="cards__title"></h2>
-          <button type="button" class="cards__like-button"></button>
+            <h2 class="cards__title"></h2>
+            <button type="button" class="cards__like-button"></button>
         </div>
-      </div>
-    </template>
-    <script src="./scripts/initial-сards.js"></script>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>>
-  </body>
+    </div>
+</template>
+<script src="./scripts/initial-сards.js"></script>
+<script src="./scripts/index.js"></script>
+<script src="./scripts/validate.js"></script>
+>
+</body>
 </html>
