@@ -60,7 +60,7 @@ function resetFormInputs(popup) {
     }
 }
 
-function submitButtonActivation() {
+function ActivateSubmitButton() {
     if (inputName.validity.valid && inputJob.validity.valid) {
         editPopupSubmitButton.disabled = false;
         editPopupSubmitButton.classList.remove('popup__submit_disabled');
@@ -75,7 +75,7 @@ function toggleEditProfilePopup () {
     togglePopup(editProfilePopup);
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
-    submitButtonActivation();
+    ActivateSubmitButton();
     setPopupEventListener(editProfilePopup);
     resetFormInputs(editProfilePopup);
 }
@@ -83,7 +83,7 @@ function toggleEditProfilePopup () {
 function toggleAddCardPopup () {
     togglePopup(addCardPopup);
     addPopupForm.reset();
-    submitButtonActivation();
+    ActivateSubmitButton();
     setPopupEventListener(addCardPopup);
     resetFormInputs(addCardPopup);
 }
