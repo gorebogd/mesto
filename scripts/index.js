@@ -50,7 +50,7 @@ function togglePopup(popup) {
     popup.classList.toggle('popup_opened');
 }
 
-function toggleEditProfilePopup () {
+function toggleEditProfilePopup() {
     togglePopup(editProfilePopup);
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
@@ -59,7 +59,7 @@ function toggleEditProfilePopup () {
     resetFormInputs(editProfilePopup);
 }
 
-function toggleAddCardPopup () {
+function toggleAddCardPopup() {
     togglePopup(addCardPopup);
     addPopupForm.reset();
     togglePopupEventListener(addCardPopup);

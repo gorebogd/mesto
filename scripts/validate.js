@@ -87,7 +87,7 @@ function activateSubmitButton() {
 }
 
 function diactivateSubmitButton() {
-    
+
 }
 
 enableValidation({
