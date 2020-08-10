@@ -27,6 +27,7 @@ const imagePopupDescription = imagePopup.querySelector('.popup__description');
 function closePopupByEsc(event) {
     if (event.key === 'Escape') {
         document.querySelector('.popup_opened').classList.remove('popup_opened');
+        document.removeEventListener('keydown', closePopupByEsc);
     }
 }
 
@@ -41,7 +42,6 @@ function togglePopupEventListener(popup) {
         document.addEventListener('keydown', closePopupByEsc);
         popup.addEventListener('click', closeByOverlay);
     } else {
-        document.removeEventListener('keydown', closePopupByEsc);
         popup.removeEventListener('click', closeByOverlay);
     }
 }
@@ -101,12 +101,11 @@ addCloseButton.addEventListener('click', () => {
     toggleAddCardPopup();
 });
 imageCloseButton.addEventListener('click', () => {
-    togglePopup(imagePopup);
+    toggleImagePopup();
 });
 
 editPopupForm.addEventListener('submit', submitProfile);
 addPopupForm.addEventListener('submit', submitAddCard);
-
 
 const cardsTemplate = document.querySelector('.cards-template').content.querySelector('.cards__card');
 const cardsList = document.querySelector('.cards__grid');
