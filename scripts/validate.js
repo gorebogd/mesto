@@ -40,7 +40,7 @@
     const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
     const submitButton = formElement.querySelector(params.submitButtonSelector);
     inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', (event) => {
+      inputElement.addEventListener('input', () => {
         checkInputValidity(formElement, inputElement, params);
         toggleButtonState(inputList, submitButton, params);
       });
@@ -57,7 +57,36 @@
     });
   }
 
-enableValidation({
+  function resetInputError(inputElement, inputElementError) {
+    inputElement.textContent = '';
+    inputElement.classList.remove('popup__input-text_type_error');
+    inputElementError.classList.remove('popup__error_active');
+  }
+
+  function resetFormInputs(popup) {
+    const inputList = Array.from(popup.querySelectorAll('.popup__input-text'));
+    inputList.forEach((inputElement) => {
+      const inputError = popup.querySelector(`#${inputElement.name}-error`)
+      if (inputElement.validity.valid) {
+        resetInputError(inputElement, inputError);
+      }
+    });
+    if (popup.classList.contains('popup_type_add-card')) {
+      inputList.forEach((inputElement) => {
+        const inputError = popup.querySelector(`#${inputElement.name}-error`)
+        resetInputError(inputElement, inputError);
+      })
+    }
+  }
+
+  function activateSubmitButton() {
+    if (inputName.validity.valid && inputJob.validity.valid) {
+      editPopupSubmitButton.disabled = false;
+      editPopupSubmitButton.classList.remove('popup__submit_disabled');
+    }
+  }
+
+  enableValidation({
     formSelector: '.popup__form',
     inputSelector: '.popup__input-text',
     submitButtonSelector: '.popup__submit',

@@ -30,40 +30,19 @@ function closePopupByEsc(event) {
     }
 }
 
+function closeByOverlay(event) {
+    if (event.target.classList.contains('popup_opened')) {
+        event.target.classList.remove('popup_opened');
+    }
+}
+
 function togglePopupEventListener(popup) {
     if (popup.classList.contains('popup_opened')) {
         document.addEventListener('keydown', closePopupByEsc);
+        popup.addEventListener('click', closeByOverlay);
     } else {
         document.removeEventListener('keydown', closePopupByEsc);
-    }
-}
-
-function resetInputError(inputElement, inputElementError) {
-    inputElement.textContent = '';
-    inputElement.classList.remove('popup__input-text_type_error');
-    inputElementError.classList.remove('popup__error_active');
-}
-
-function resetFormInputs(popup) {
-    const inputList = Array.from(popup.querySelectorAll('.popup__input-text'));
-    inputList.forEach((inputElement) => {
-        const inputError = popup.querySelector(`#${inputElement.name}-error`)
-        if (inputElement.validity.valid) {
-            resetInputError(inputElement, inputError);
-        }
-    });
-    if (popup.classList.contains('popup_type_add-card')) {
-        inputList.forEach((inputElement) => {
-            const inputError = popup.querySelector(`#${inputElement.name}-error`)
-            resetInputError(inputElement, inputError);
-        })
-    }
-}
-
-function activateSubmitButton() {
-    if (inputName.validity.valid && inputJob.validity.valid) {
-        editPopupSubmitButton.disabled = false;
-        editPopupSubmitButton.classList.remove('popup__submit_disabled');
+        popup.removeEventListener('click', closeByOverlay);
     }
 }
 
@@ -86,6 +65,11 @@ function toggleAddCardPopup () {
     activateSubmitButton();
     togglePopupEventListener(addCardPopup);
     resetFormInputs(addCardPopup);
+}
+
+function toggleImagePopup() {
+    togglePopup(imagePopup);
+    togglePopupEventListener(imagePopup);
 }
 
 function submitProfile(event) {
@@ -149,7 +133,7 @@ function createCard(data) {
         imagePopupPicture.src = cardImage.src;
         imagePopupDescription.textContent = cardTitle.textContent;
         imagePopupPicture.alt = cardTitle.textContent;
-        togglePopup(imagePopup);
+        toggleImagePopup();
     });
     return card;
 }
@@ -162,23 +146,6 @@ initialCards.forEach((data) => {
     renderCard(data);
 });
 
-function closeByOverlay(event) {
-    if (event.target.classList.contains('popup_opened')) {
-        event.target.classList.remove('popup_opened');
-    }
-}
-
-addCardPopup.addEventListener('click', (event) => {
-    closeByOverlay(event);
-});
-
-imagePopup.addEventListener('click', (event) => {
-    closeByOverlay(event);
-});
-
-editProfilePopup.addEventListener('click', (event) => {
-    closeByOverlay(event);
-});
 
 
 
