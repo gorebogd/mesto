@@ -64,6 +64,8 @@ function toggleAddCardPopup () {
     addPopupForm.reset();
     togglePopupEventListener(addCardPopup);
     resetFormInputs(addCardPopup);
+    addPopupSubmitButton.disabled = true;
+    addPopupSubmitButton.classList.add('popup__submit_disabled');
 }
 
 function toggleImagePopup() {
@@ -87,22 +89,11 @@ function submitAddCard(event) {
     addPopupSubmitButton.disabled = true;
 }
 
-editButton.addEventListener('click', () => {
-    toggleEditProfilePopup();
-});
-editCloseButton.addEventListener('click', () => {
-    toggleEditProfilePopup();
-});
-addButton.addEventListener('click', () => {
-    toggleAddCardPopup();
-});
-addCloseButton.addEventListener('click', () => {
-    toggleAddCardPopup();
-});
-imageCloseButton.addEventListener('click', () => {
-    toggleImagePopup();
-});
-
+editButton.addEventListener('click', toggleEditProfilePopup);
+editCloseButton.addEventListener('click', toggleEditProfilePopup);
+addButton.addEventListener('click', toggleAddCardPopup);
+addCloseButton.addEventListener('click', toggleAddCardPopup);
+imageCloseButton.addEventListener('click', toggleImagePopup);
 editPopupForm.addEventListener('submit', submitProfile);
 addPopupForm.addEventListener('submit', submitAddCard);
 
