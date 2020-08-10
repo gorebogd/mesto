@@ -30,7 +30,7 @@ function closePopupByEsc(event) {
     }
 }
 
-function setPopupEventListener(popup) {
+function togglePopupEventListener(popup) {
     if (popup.classList.contains('popup_opened')) {
         document.addEventListener('keydown', closePopupByEsc);
     } else {
@@ -49,13 +49,13 @@ function resetFormInputs(popup) {
     inputList.forEach((inputElement) => {
         const inputError = popup.querySelector(`#${inputElement.name}-error`)
         if (inputElement.validity.valid) {
-            resetInputError(inputElement, inputError)
+            resetInputError(inputElement, inputError);
         }
     });
     if (popup.classList.contains('popup_type_add-card')) {
         inputList.forEach((inputElement) => {
             const inputError = popup.querySelector(`#${inputElement.name}-error`)
-            resetInputError(inputElement, inputError)
+            resetInputError(inputElement, inputError);
         })
     }
 }
@@ -76,7 +76,7 @@ function toggleEditProfilePopup () {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     activateSubmitButton();
-    setPopupEventListener(editProfilePopup);
+    togglePopupEventListener(editProfilePopup);
     resetFormInputs(editProfilePopup);
 }
 
@@ -84,7 +84,7 @@ function toggleAddCardPopup () {
     togglePopup(addCardPopup);
     addPopupForm.reset();
     activateSubmitButton();
-    setPopupEventListener(addCardPopup);
+    togglePopupEventListener(addCardPopup);
     resetFormInputs(addCardPopup);
 }
 
@@ -127,10 +127,6 @@ addPopupForm.addEventListener('submit', submitAddCard);
 const cardsTemplate = document.querySelector('.cards-template').content.querySelector('.cards__card');
 const cardsList = document.querySelector('.cards__grid');
 
-function renderCard(data) {
-    cardsList.prepend(createCard(data));
-}
-
 function createCard(data) {
     const card = cardsTemplate.cloneNode(true);
     const cardTitle = card.querySelector('.cards__title');
@@ -140,6 +136,7 @@ function createCard(data) {
 
     cardTitle.textContent = data.name;
     cardImage.src = data.link;
+    cardImage.alt = data.name;
 
     cardLikeButton.addEventListener('click', (event) => {
         event.target.classList.toggle('cards__like-button_active');
@@ -151,9 +148,14 @@ function createCard(data) {
     cardImage.addEventListener('click', () => {
         imagePopupPicture.src = cardImage.src;
         imagePopupDescription.textContent = cardTitle.textContent;
+        imagePopupPicture.alt = cardTitle.textContent;
         togglePopup(imagePopup);
     });
     return card;
+}
+
+function renderCard(data) {
+    cardsList.prepend(createCard(data));
 }
 
 initialCards.forEach((data) => {
