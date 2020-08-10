@@ -62,7 +62,6 @@ function toggleEditProfilePopup () {
 function toggleAddCardPopup () {
     togglePopup(addCardPopup);
     addPopupForm.reset();
-    activateSubmitButton();
     togglePopupEventListener(addCardPopup);
     resetFormInputs(addCardPopup);
 }
