@@ -149,8 +149,8 @@ const validationParams = {
     errorClass: 'popup__error_active'
 }
 
-const editFormValidator = new FormValidator(validationParams, editPopupFormForm);
-const addCardFormValidator = new FormValidator(validationParams, addCardPopupForm);
+const editFormValidator = new FormValidator(validationParams, editPopupForm);
+const addCardFormValidator = new FormValidator(validationParams, addPopupForm);
 
 
 editFormValidator.enableValidation();
