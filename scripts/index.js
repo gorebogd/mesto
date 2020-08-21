@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addCardPopup = document.querySelector('.popup_type_add-card');
@@ -139,6 +140,21 @@ initialCards.forEach((data) => {
     cardsList.prepend(card);
 });
 
+const validationParams = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input-text',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputErrorClass: 'popup__input-text_type_error',
+    errorClass: 'popup__error_active'
+}
+
+const editFormValidator = new FormValidator(validationParams, editPopupFormForm);
+const addCardFormValidator = new FormValidator(validationParams, addCardPopupForm);
+
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 
 
