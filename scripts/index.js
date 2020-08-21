@@ -70,7 +70,7 @@ function toggleAddCardPopup() {
     addPopupSubmitButton.classList.add('popup__submit_disabled');
 }
 
-export function toggleImagePopup() {
+function toggleImagePopup() {
     togglePopup(imagePopup);
     togglePopupEventListener(imagePopup);
 }
