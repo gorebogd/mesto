@@ -5,9 +5,10 @@ export default  class FormValidator {
         this._submitButtonSelector = params.submitButtonSelector;
         this._inactiveButtonClass = params.inactiveButtonClass;
         this._inputErrorClass = params.inputErrorClass;
-        this._errorClass = params._errorClass;
+        this._errorClass = params.errorClass;
         this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
         this._submitButton = formElement.querySelector(this._submitButtonSelector);
+        this._formElement = formElement;
     }
 
     _showInputError = (inputElement, errorMessage) => {
