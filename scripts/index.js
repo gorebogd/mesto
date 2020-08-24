@@ -34,6 +34,7 @@ function closePopupByEsc(event) {
 function closeByOverlay(event) {
     if (event.target.classList.contains('popup_opened')) {
         event.target.classList.remove('popup_opened');
+        document.removeEventListener('keydown', closePopupByEsc);
     }
 }
 
@@ -43,6 +44,7 @@ function togglePopupEventListener(popup) {
         popup.addEventListener('click', closeByOverlay);
     } else {
         popup.removeEventListener('click', closeByOverlay);
+        document.removeEventListener('keydown', closePopupByEsc);
     }
 }
 
