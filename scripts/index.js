@@ -11,7 +11,7 @@ const addButton = document.querySelector('.profile__add-button');
 const addCloseButton = addCardPopup.querySelector('.popup__close-button');
 const imageCloseButton = imagePopup.querySelector('.popup__close-button');
 const addPopupSubmitButton = addCardPopup.querySelector('.popup__submit');
-// const editPopupSubmitButton = editProfilePopup.querySelector('.popup__submit');
+const editPopupSubmitButton = editProfilePopup.querySelector('.popup__submit');
 
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__description');
@@ -56,14 +56,14 @@ function toggleEditProfilePopup() {
     inputJob.value = profileJob.textContent;
     activateSubmitButton();
     togglePopupEventListener(editProfilePopup);
-    // resetFormInputs(editProfilePopup);
+    resetFormInputs(editProfilePopup);
 }
 
 function toggleAddCardPopup() {
     togglePopup(addCardPopup);
     addPopupForm.reset();
     togglePopupEventListener(addCardPopup);
-    // resetFormInputs(addCardPopup);
+    resetFormInputs(addCardPopup);
     addPopupSubmitButton.disabled = true;
     addPopupSubmitButton.classList.add('popup__submit_disabled');
 }
@@ -82,7 +82,12 @@ function submitProfile(event) {
 
 function submitAddCard(event) {
     event.preventDefault();
-    renderCard({name: inputPlace.value, link: inputImage.value});
+    const item = {
+        name: inputPlace.value,
+        link: inputImage.value
+    }
+    const newCard = new Card(item, cardsTemplate).createCard();
+    cardsList.prepend(newCard);
     togglePopup(addCardPopup);
     addPopupForm.reset();
     addPopupSubmitButton.classList.add('popup__submit_disabled');
@@ -121,6 +126,34 @@ const addCardFormValidator = new FormValidator(validationParams, addPopupForm);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
+const activateSubmitButton = () => {
+    if (inputName.validity.valid && inputJob.validity.valid) {
+        editPopupSubmitButton.disabled = false;
+        editPopupSubmitButton.classList.remove('popup__submit_disabled');
+    }
+}
+
+const resetInputError = (inputElement, inputElementError) => {
+    inputElement.textContent = '';
+    inputElement.classList.remove('popup__input-text_type_error');
+    inputElementError.classList.remove('popup__error_active');
+}
+
+const resetFormInputs = (popup) => {
+    const inputList = Array.from(popup.querySelectorAll('.popup__input-text'));
+    inputList.forEach((inputElement) => {
+        const inputError = popup.querySelector(`#${inputElement.name}-error`)
+        if (inputElement.validity.valid) {
+            resetInputError(inputElement, inputError);
+        }
+    });
+    if (popup.classList.contains('popup_type_add-card')) {
+        inputList.forEach((inputElement) => {
+            const inputError = popup.querySelector(`#${inputElement.name}-error`)
+            resetInputError(inputElement, inputError);
+        })
+    }
+}
 
 
 
