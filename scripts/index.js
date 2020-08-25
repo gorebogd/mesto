@@ -77,7 +77,7 @@ function submitProfile(event) {
     togglePopup(editProfilePopup);
 }
 
-const renderCard = (item, cardsTemplate, list) => {
+function renderCard (item, cardsTemplate, list) {
     const card = new Card(item, cardsTemplate).createCard();
     list.prepend(card);
 }
