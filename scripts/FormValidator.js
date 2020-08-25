@@ -11,6 +11,15 @@ export default  class FormValidator {
         this._formElement = formElement;
     }
 
+    _setEventListeners  = () => {
+        this._inputList.forEach((inputElement) => {
+            inputElement.addEventListener('input', () => {
+                this._checkInputValidity(inputElement);
+                this._toggleButtonState();
+            });
+        });
+    }
+
     _showInputError = (inputElement, errorMessage) => {
         const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
         inputElement.classList.add(this._inputErrorClass);
@@ -50,11 +59,13 @@ export default  class FormValidator {
     }
 
     enableValidation = () => {
+        this._setEventListeners();
+    }
+
+    formStateCheck() {
         this._inputList.forEach((inputElement) => {
-            inputElement.addEventListener('input', () => {
-                this._checkInputValidity(inputElement);
-                this._toggleButtonState();
-            });
+            this._hideInputError(inputElement);
         });
+        this._toggleButtonState();
     }
 }

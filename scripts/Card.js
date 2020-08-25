@@ -1,6 +1,7 @@
 import {toggleImagePopup} from './index.js';
 
 const imagePopup = document.querySelector('.popup_type_image');
+const image = imagePopup.querySelector('.popup__image');
 
 
 export default class Card {
@@ -8,6 +9,11 @@ export default class Card {
         this._cardTitle = data.name;
         this._cardImage = data.link;
         this._templateSelector = templateSelector;
+    }
+
+    _getTemplate() {
+        const cardElement = this._templateSelector.cloneNode(true);
+        return cardElement;
     }
 
     _toggleLikeButton() {
@@ -19,8 +25,8 @@ export default class Card {
     }
 
     _openCard = () => {
-        imagePopup.querySelector('.popup__image').src = this._cardImage;
-        imagePopup.querySelector('.popup__image').alt = this._cardTitle;
+        image.src = this._cardImage;
+        image.alt = this._cardTitle;
         imagePopup.querySelector('.popup__description').textContent = this._cardTitle;
         toggleImagePopup();
     }
@@ -32,10 +38,11 @@ export default class Card {
     }
 
     createCard = () => {
-        this._card = this._templateSelector.cloneNode(true);
+        this._card = this._getTemplate();
+        const cardImage = this._card.querySelector('.cards__image');
         this._card.querySelector('.cards__title').textContent = this._cardTitle;
-        this._card.querySelector('.cards__image').src = this._cardImage;
-        this._card.querySelector('.cards__image').alt = this._cardTitle;
+        cardImage.src = this._cardImage;
+        cardImage.alt = this._cardTitle;
         this._setEventListeners();
         return this._card;
     }
