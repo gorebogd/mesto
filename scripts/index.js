@@ -57,14 +57,11 @@ function toggleEditProfilePopup() {
     togglePopup(editProfilePopup);
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
-    editFormValidator.formStateCheck();
 }
 
 function toggleAddCardPopup() {
     togglePopup(addCardPopup);
-    addPopupForm.reset();
-    addCardFormValidator.formStateCheck();
- }
+}
 
 export function toggleImagePopup() {
     togglePopup(imagePopup);
@@ -90,6 +87,7 @@ function submitAddCard(event) {
     }
     renderCard(item, cardsTemplate, cardsList);
     togglePopup(addCardPopup);
+    addPopupForm.reset();
 }
 
 editButton.addEventListener('click', toggleEditProfilePopup);
