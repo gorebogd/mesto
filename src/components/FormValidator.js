@@ -58,7 +58,7 @@ export default  class FormValidator {
         }
     }
 
-    _checkFormState() {
+    checkFormState() {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
@@ -68,7 +68,7 @@ export default  class FormValidator {
 
     enableValidation = () => {
         this._formElement.addEventListener('submit', () => {
-            this._checkFormState();
+            this.checkFormState();
         });
         this._setEventListeners();
     }

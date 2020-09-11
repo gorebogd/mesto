@@ -1,4 +1,5 @@
 .cards__image {
+    display: block;
     border-radius: 10px 10px 0px 0px;
     width: 282px;
     height: 282px;

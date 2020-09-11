@@ -20,12 +20,13 @@ export default class Card {
     }
 
     _deleteCard() {
-        this.closest('.cards__card').remove();
+        this._card.remove();
+        this._card = null;
     }
 
     _setEventListeners = () => {
         this._card.querySelector('.cards__like-button').addEventListener('click', this._toggleLikeButton);
-        this._card.querySelector('.cards__delete-button').addEventListener('click', this._deleteCard);
+        this._card.querySelector('.cards__delete-button').addEventListener('click', () => {this._deleteCard()});
         this._card.querySelector('.cards__image').addEventListener('click', () => {
             this._handleCardClick(this._cardTitle, this._cardImage);
         });

@@ -19,18 +19,23 @@ const validationParams = {
     errorClass: 'popup__error_active'
 }
 
+const addCard = (item) => {
+    const card = new Card({
+        data: item,
+        cardSelector: '.cards-template',
+        handleCardClick: (name, link) => {
+            popupWithImage.open(name, link)
+        }
+    }).createCard();
+    cardList.addItem(card);
+}
+
 const cardList = new Section({
     data: initialCards,
-    renderer: (item) => {
-        const card = new Card({
-            data: item,
-            cardSelector: '.cards-template',
-            handleCardClick: (name, link) => {
-                popupWithImage.open(name, link)
-            }
-        }).createCard();
-        cardList.setItem(card);
+    renderer: (data) => {
+        addCard(data);
     }
+
 }, '.cards__grid')
 
 cardList.renderItems();
@@ -61,25 +66,16 @@ const editProfilePopup = new PopupWithForm ({
 editProfilePopup.setEventListeners();
 editButton.addEventListener('click', () => {
     editProfilePopup.open();
-
+    editFormValidator.checkFormState();
 });
 
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup_type_add-card',
     formSubmitHandler: (data) => {
-        const newData = {
+        addCard({
             name: data[`place`],
             link: data[`image`]
-        }
-
-        const card = new Card({
-            data: newData,
-            cardSelector: '.cards-template',
-            handleCardClick: (name, link) => {
-                popupWithImage.open(name, link)
-            }
-        }).createCard();
-        cardList.setItem(card);
+        });
         addCardPopup.close();
     }
 })
@@ -87,6 +83,7 @@ const addCardPopup = new PopupWithForm({
 addCardPopup.setEventListeners();
 addButton.addEventListener('click', () => {
     addCardPopup.open()
+    addCardFormValidator.checkFormState()
 })
 
 const addPopupForm = document.querySelector('.popup_type_add-card').querySelector('.popup__form');
