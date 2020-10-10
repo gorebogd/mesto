@@ -101,6 +101,36 @@
         </form>
     </div>
 </div>
+  
+<div class="popup popup_type_confirm">
+        <div class="popup__container">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button type="button" class="popup__close-button"></button>
+            <form class="popup__form" novalidate>
+                <input type="submit" class="popup__submit" value="Да">
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_type_update-avatar">
+        <div class="popup__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <button type="button" class="popup__close-button"></button>
+            <form class="popup__form" novalidate>
+                <input
+                        name="avatar"
+                        type="url"
+                        placeholder="Введите URL аватара"
+                        class="popup__input-text popup__input-text_type_avatar-source"
+                        required
+                />
+                <span id="avatar-error" class='popup__error'></span>
+                <input type="submit" class="popup__submit" value="Сохранить">
+            </form>
+        </div>
+    </div>
+
+</div>
 
 <div class="popup popup_type_image">
     <div class="popup__container_type_image">
