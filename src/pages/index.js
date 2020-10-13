@@ -10,7 +10,7 @@ import Api from "../components/Api.js";
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
-
+const editAvatar = document.querySelector(".profile__image");
 const api = new Api({
     address: "https://mesto.nomoreparties.co/v1",
     groupId: `cohort-16`,
@@ -39,7 +39,6 @@ const editProfilePopup = new PopupWithForm({
     formSubmitHandler: (data) => {
         api.setUserInfo(data)
         .then(res => {
-            console.log(res);
             userInfo.setUserInfo(res.name, res.about);
         })
         editProfilePopup.close();
@@ -93,6 +92,7 @@ Promise.all([api.getCards(), api.getUserInfo()])
             data.name,
             data.about,
         );
+        editAvatar.src = data.avatar;
 
         const addCard = (item) => {
             const card = new Card({
@@ -117,3 +117,25 @@ Promise.all([api.getCards(), api.getUserInfo()])
         cardList.renderItems();
     })
     .catch((err) => console.log(`Ошибка загрузки данных: ${err}`));
+
+    const editAvatarPopup = new PopupWithForm ({
+        popupSelector: ".popup_type_update-avatar",
+        formSubmitHandler: (data) => {
+            api.setUserAvatar(data)
+            .then(res => {
+                editAvatar.src = res.avatar;
+                editAvatarPopup.close()
+            });
+        }
+    })
+    editAvatarPopup.setEventListeners()
+    editAvatar.addEventListener('click', () => {
+        avatarFormValidator.checkFormState();
+        editAvatarPopup.open();
+    })
+
+    const editAvatarForm = document
+    .querySelector(".popup_type_update-avatar")
+    .querySelector(".popup__form");
+const avatarFormValidator = new FormValidator(validationParams, editAvatarForm);
+avatarFormValidator.enableValidation();
