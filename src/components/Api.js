@@ -18,7 +18,7 @@ export default class Api {
             .then(this.getResponse)
     }
 
-    setUserInfo({name, about}) {
+    setUserInfo(data) {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -26,14 +26,14 @@ export default class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name,
-                about
+                name: data[`name`],
+                about: data[`job`]
             })
         })
             .then(this.getResponse)
     }
 
-    setUserAvatar({ avatar }) {
+    setUserAvatar({avatar}) {
         return fetch(`${this._address}/${this._groupId}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
@@ -41,17 +41,47 @@ export default class Api {
             },
             body: JSON.stringify({
                 avatar: avatarUrl
-              })
             })
-              .then(this.getResponse);
-          }
+        })
+            .then(this.getResponse);
+    }
 
     getCards() {
         return fetch(`${this._address}/${this._groupId}/cards`, {
-          headers: {
-            authorization: this._token
-          }
+            headers: {
+                authorization: this._token
+            }
         })
-          .then(this.getResponse)
-      }
+            .then(this.getResponse)
+    }
+
+    addCard({name, link}) {
+        return fetch(`${this._address}/${this._groupId}/cards`, {
+            method: 'POST',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                link
+            })
+        })
+            .then(this.getResponse)
+    }
+
+    addCard({name, link}) {
+        return fetch(`${this._address}/${this._groupId}/cards`, {
+            method: 'POST',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                link
+            })
+        })
+            .then(this.getResponse)
+    }
 }
