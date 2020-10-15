@@ -6,6 +6,7 @@
 @import url(./__like-button/cards__like-button.css);
 @import url(./__like-button/_active/cards__like-button_active.css);
 @import url(./__delete-button/cards__delete-button.css);
+@import url(./__like-count/cards__like-count.css);
 
 .cards {
     max-width: 882px;

@@ -56,7 +56,7 @@ export default class Api {
             .then(this.getResponse)
     }
 
-    addCard({name, link}) {
+    addCard(data) {
         return fetch(`${this._address}/${this._groupId}/cards`, {
             method: 'POST',
             headers: {
@@ -64,25 +64,11 @@ export default class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name,
-                link
+                name: data.place,
+                link: data.image
             })
         })
             .then(this.getResponse)
     }
 
-    addCard({name, link}) {
-        return fetch(`${this._address}/${this._groupId}/cards`, {
-            method: 'POST',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name,
-                link
-            })
-        })
-            .then(this.getResponse)
-    }
 }
