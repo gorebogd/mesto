@@ -12,6 +12,10 @@ export default class Card {
         this._handleLikeClick = handleLikeClick;
     }
 
+    isLiked() {
+        return Boolean(this._likes.find(item => item._id === this._userId));
+    }
+
     _updateLikes() {
         this._card.querySelector('.cards__like-count').textContent = this._likes.length;
 
@@ -48,10 +52,6 @@ export default class Card {
         }
 
         return this._card;
-    }
-
-    isLiked() {
-        return Boolean(this._likes.find(item => item._id === this._userId));
     }
 
     getId() {
