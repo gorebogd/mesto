@@ -44,46 +44,37 @@ popupWithConfirm.setEventListeners();
 const addCard = (cardData) => {
 
     const card = new Card({
-        data: { cardData, currentId: userId }
-        
-    ,
-        
-            handleCardClick: (name, link) => {
-                popupWithImage.open(link, name);
-            },
+        data: {...cardData, currentId: userId},
 
-            handleDeleteClick: (card) => {
-                popupWithConfirm.setSubmitHandler(() => {
-                    api
-                        .removeCard(card.getId())
-                        .then(() => {
-                            card.removeCard();
-                            popupWithConfirm.close();
-                        })
-                        .catch(err => console.log(err))
+        handleCardClick: (name, link) => {
+            popupWithImage.open(link, name);
+        },
 
-                });
-                popupWithConfirm.open();
-            },
+        handleDeleteClick: (card) => {
+            popupWithConfirm.setSubmitHandler(() => {
+                popupWithConfirm.renderLoading(true);
+                api
+                    .removeCard(card.getId())
+                    .then(() => {
+                        card.removeCard();
+                        popupWithConfirm.close();
+                    })
+                    .catch(err => console.log(err))
+                    .finally(() => popupWithConfirm.renderLoading(false));
 
-            handleLikeClick: (cardId, isLiked) => {
-                if (isLiked) {
-                    api
-                        .removeLike(cardId)
-                        .then(() => {
-                            card.setLike();
-                        })
-                        .catch(err => console.log(err));
-                } else {
-                    api
-                        .addLike(cardId)
-                        .then(() => {
-                            card.setLike();
-                        })
-                        .catch(err => console.log(err));
-                }
-            }
-        });
+            });
+            popupWithConfirm.open();
+        },
+
+        handleLikeClick: (card) => {
+            api.changeLikeCardStatus(card.getId(), !card.isLiked())
+                .then(data => {
+                    card.setLikesOnCounter({...data});
+                })
+                .catch(err => console.log(err))
+
+        }
+    }, '.cards-template')
 
     cardList.addItem(card.createCard());
 };

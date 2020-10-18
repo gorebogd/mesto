@@ -1,10 +1,10 @@
 export default class Card {
     constructor({data, handleCardClick, handleDeleteClick, handleLikeClick}, cardSelector) {
-        this._likes =data.likes;
-        this._id =data._id;
-        this._name =data.name;
-        this._link =data.link;
-        this._ownerId =data.owner._id;
+        this._likes = data.likes;
+        this._id = data._id;
+        this._name = data.name;
+        this._link = data.link;
+        this._ownerId = data.owner._id;
         this._userId = data.currentUserId;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
@@ -13,12 +13,15 @@ export default class Card {
     }
 
     _updateLikes() {
-        this._element.querySelector('.cards__like-count').textContent = this._likes.length;
+        this._card.querySelector('.cards__like-count').textContent = this._likes.length;
 
-        if (this.isLiked()) this._element.querySelector('.cards__like-button')
-            .classList.add('cards__like-button_active');
-        else this._element.querySelector('.card__like-button')
-            .classList.remove('cards__like-button_active');
+        if (this.isLiked()) {
+            this._card.querySelector('.cards__like-button')
+                .classList.add('cards__like-button_active');
+        } else {
+            this._card.querySelector('.cards__like-button')
+                .classList.remove('cards__like-button_active');
+        }
     }
 
     _getTemplate() {
@@ -62,13 +65,6 @@ export default class Card {
         this._updateLikes();
     }
 
-    _renderLike() {
-        this._card
-            .querySelector('.cards__like-button')
-            .classList
-            .toggle('cards__like-button_active');
-    }
-
     _setEventListeners() {
         this._card.querySelector('.cards__image').addEventListener('click', () => {
             this._handleCardClick(this._link, this._name, this._alt);
@@ -87,15 +83,5 @@ export default class Card {
         this._card.remove();
         this._card = null;
     }
-
-    setLike() {
-        this._renderLike();
-
-        if (this._isLiked) {
-            this._cardLikes.textContent = Number(this._cardLikes.textContent) - 1;
-        } else {
-            this._cardLikes.textContent = Number(this._cardLikes.textContent) + 1;
-        }
-        this._isLiked = !this._isLiked;
-    }
+    
 }
