@@ -26,6 +26,8 @@ const validationParams = {
     errorClass: "popup__error_active",
 };
 
+let userId = null;
+
 const userInfo = new UserInfo({
     nameSelector: ".profile__title",
     jobSelector: ".profile__description",
@@ -40,22 +42,20 @@ popupWithConfirm.setEventListeners();
 
 
 const addCard = (cardData) => {
-    const currentUserId = userInfo.getUserInfo().id;
-    cardData.isOwner = (cardData.owner._id === currentUserId);
-    cardData.isLiked = cardData.likes.some((like) => {
-        return like._id === currentUserId;
-    });
 
-    const card = new Card(cardData, '.cards-template',
-        {
+    const card = new Card({
+        data: { cardData, currentId: userId }
+        
+    ,
+        
             handleCardClick: (name, link) => {
                 popupWithImage.open(link, name);
             },
 
-            handleDeleteClick: (cardId) => {
+            handleDeleteClick: (card) => {
                 popupWithConfirm.setSubmitHandler(() => {
                     api
-                        .removeCard(cardId)
+                        .removeCard(card.getId())
                         .then(() => {
                             card.removeCard();
                             popupWithConfirm.close();
@@ -179,6 +179,7 @@ avatarFormValidator.enableValidation();
 
 Promise.all([api.getCards(), api.getUserInfo()])
     .then(([cards, userData]) => {
+        userId = userData._id;
         userInfo.setUserInfo(userData.name, userData.about);
         userInfo.setAvatar(userData.avatar);
         cardList.renderItems({
