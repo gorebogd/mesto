@@ -22,9 +22,10 @@
     border-radius: 50%;
     background-color: rgba(0, 0, 0, .8);
     opacity: 0;
+    overflow: hidden;
 }
 
-.profile__avatar-container :hover::after {
+.profile__avatar-container:hover::after {
     transition: opacity 0.2s linear;
     cursor: pointer;
     opacity: 1;

@@ -8,8 +8,8 @@ export default class Card {
         this._ownerId = cardData.owner._id;
         this._createdAt = cardData.createdAt;
 
-        this._isOwner = cardData.isOwner; //created inside 'addCard' function in 'index.js'
-        this._isLiked = cardData.isLiked; //created inside 'addCard' function in 'index.js'
+        this._isOwner = cardData.isOwner; 
+        this._isLiked = cardData.isLiked; 
 
         this._cardSelector = cardSelector;
 
@@ -40,13 +40,16 @@ export default class Card {
         this._cardImage.alt = this._alt;
         this._cardLikes.textContent = this._likes.length;
 
-        if (!(this._userId === this._ownerId)) {
-            this._card.querySelector('.cards__delete-button').classList.add('.cards__delete-button_hidden')
-        }
-
-        if (this._isLiked) {
+        if (!this._isOwner) {
+            this._card
+            .querySelector('.cards__delete-button')
+            .classList
+            .add('cards__delete-button_hidden');
+          }
+      
+          if (this._isLiked) {
             this._renderLike();
-        }
+          }
 
         return this._card;
     }
@@ -85,7 +88,6 @@ export default class Card {
         } else {
             this._cardLikes.textContent = Number(this._cardLikes.textContent) + 1;
         }
-
         this._isLiked = !this._isLiked;
     }
 }
