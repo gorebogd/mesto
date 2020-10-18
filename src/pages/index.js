@@ -46,7 +46,7 @@ popupWithConfirm.setEventListeners();
 
 const addCard = (cardData) => {
     const card = new Card({
-        data: {...cardData, currentId: userId},
+        data: cardData,
 
         handleCardClick: (name, link) => {
             popupWithImage.open(link, name);
@@ -76,7 +76,7 @@ const addCard = (cardData) => {
                 .catch(err => console.log(err))
 
         }
-    }, '.cards-template')
+    }, userId, '.cards-template')
 
     cardList.addItem(card.createCard());
 };
