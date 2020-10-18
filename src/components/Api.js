@@ -26,8 +26,8 @@ export default class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data[`name`],
-                about: data[`job`]
+                name: data.name,
+                about: data.job
             })
         })
             .then(this.getResponse)
@@ -70,5 +70,38 @@ export default class Api {
         })
             .then(this.getResponse)
     }
+
+    removeCard(cardId) {
+        return fetch(`${this._address}/${this._groupId}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+            }
+        })
+            .then(this.getResponse)
+    }
+
+    addLike(cardId) {
+        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(this.getResponse)
+    }
+
+    removeLike(cardId) {
+        return fetch(`${this._address}/${this._groupId}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(this.getResponse);
+    }
+
 
 }

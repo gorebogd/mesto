@@ -1,12 +1,14 @@
-.profile__image {
-    max-width: 120px;
-    width: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+.profile__avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
     margin-right: 30px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
-.profile__image::after {
+
+.profile__avatar-container::after {
     content: '';
     position: absolute;
     top: 0;
@@ -22,14 +24,15 @@
     opacity: 0;
 }
 
-.profile__image:hover::after {
+.profile__avatar-container :hover::after {
     transition: opacity 0.2s linear;
     cursor: pointer;
     opacity: 1;
-  }
+}
+
 
 @media (max-width: 660px) {
-    .profile__image {
+    .profile__avatar-container {
         margin: 0 auto 14px;
 
     }

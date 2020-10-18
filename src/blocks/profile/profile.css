@@ -1,5 +1,6 @@
 @import url(./__container/profile__container.css);
-@import url(./__image/profile__image.css);
+@import url(./__avatar-container/profile__avatar-container.css);
+@import url(./__avatar/profile__avatar.css);
 @import url(./__block/profile__block.css);
 @import url(./__info/profile__info.css);
 @import url(./__title/profile__title.css);
