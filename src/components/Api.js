@@ -81,7 +81,7 @@ export default class Api {
             .then(this.getResponse)
     }
 
-    changeLikeCardStatus(cardID, like) {
+    toggleLike(cardID, like) {
         return fetch(`${this._address}/${this._groupId}/cards/likes/${cardID}`, {
           method: like ? 'PUT' : 'DELETE',
           headers: {

@@ -1,7 +1,7 @@
 export default class Card {
     constructor({data, handleCardClick, handleDeleteClick, handleLikeClick}, cardSelector) {
         this._likes = data.likes;
-        this._id = data._id;
+        this._cardId = data._id;
         this._name = data.name;
         this._link = data.link;
         this._ownerId = data.owner._id;
@@ -15,13 +15,11 @@ export default class Card {
     _updateLikes() {
         this._card.querySelector('.cards__like-count').textContent = this._likes.length;
 
-        if (this.isLiked()) {
-            this._card.querySelector('.cards__like-button')
-                .classList.add('cards__like-button_active');
-        } else {
-            this._card.querySelector('.cards__like-button')
-                .classList.remove('cards__like-button_active');
-        }
+        if (this.isLiked()) this._card.querySelector('.cards__like-button')
+            .classList.add('cards__like-button_active');
+        else this._card.querySelector('.cards__like-button')
+            .classList.remove('cards__like-button_active');
+
     }
 
     _getTemplate() {
@@ -39,7 +37,7 @@ export default class Card {
         const cardImage = this._card.querySelector('.cards__image');
         // this._cardImage = this._card.querySelector('.cards__image');
         this._cardCaption = this._card.querySelector('.cards__title');
-        this._cardLikes = this._card.querySelector('.cards__like-count');
+        // this._cardLikes = this._card.querySelector('.cards__like-count');
         this._cardCaption.textContent = this._name;
         cardImage.src = this._link;
         cardImage.alt = this._name;
@@ -71,11 +69,11 @@ export default class Card {
         });
 
         this._card.querySelector('.cards__like-button').addEventListener('click', () => {
-            this._handleLikeClick(this._id, this._isLiked);
+            this._handleLikeClick(this);
         });
 
         this._card.querySelector('.cards__delete-button').addEventListener('click', () => {
-            this._handleDeleteClick(this._id);
+            this._handleDeleteClick(this);
         });
     }
 
@@ -83,5 +81,5 @@ export default class Card {
         this._card.remove();
         this._card = null;
     }
-    
+
 }

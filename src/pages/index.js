@@ -37,12 +37,14 @@ const userInfo = new UserInfo({
 const popupWithImage = new PopupWithImage(".popup_type_image");
 popupWithImage.setEventListeners();
 
-const popupWithConfirm = new PopupWithConfirm(".popup_type_confirm");
+const popupWithConfirm = new PopupWithConfirm({
+    popupSelector: ".popup_type_confirm",
+    formSubmitHandler: () => {}
+});
 popupWithConfirm.setEventListeners();
 
 
 const addCard = (cardData) => {
-
     const card = new Card({
         data: {...cardData, currentId: userId},
 
@@ -67,7 +69,7 @@ const addCard = (cardData) => {
         },
 
         handleLikeClick: (card) => {
-            api.changeLikeCardStatus(card.getId(), !card.isLiked())
+            api.toggleLike(card.getId(), !card.isLiked())
                 .then(data => {
                     card.setLikesOnCounter({...data});
                 })
