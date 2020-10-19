@@ -182,7 +182,6 @@ avatarFormValidator.enableValidation();
 Promise.all([api.getCards(), api.getUserInfo()])
     .then(([cards, userData]) => {
         userId = userData._id;
-        console.log(userData);
         userInfo.setUserInfo({
             name: userData.name,
             job: userData.about,
