@@ -87,21 +87,36 @@ const cardList = new Section(".cards__grid");
 const editProfilePopup = new PopupWithForm({
     popupSelector: ".popup_type_edit-profile",
     formSubmitHandler: (data) => {
-        api.setUserInfo(data)
+        editProfilePopup.renderLoading(true);
+        api.setUserInfo({
+            name: data.name,
+            about: data.job
+        })
             .then((res) => {
-                userInfo.setUserInfo(res.name, res.about);
+                userInfo.setUserInfo({
+                    name: res.name,
+                    job: res.about
+                })
                 editProfilePopup.close();
             })
             .catch(err => console.log(err))
-            .finally(() => {
-                editProfilePopup.renderLoading(false);
-            });
+            .finally(() => editProfilePopup.renderLoading(false));
+        // api.setUserInfo(data)
+        //     .then((res) => {
+        //         userInfo.setUserInfo(res.name, res.about);
+        //         editProfilePopup.close();
+        //     })
+        //     .catch(err => console.log(err))
+        //     .finally(() => {
+        //         editProfilePopup.renderLoading(false);
+        //     });
     },
 
-    setFormInputs: (formElement) => {
-        formElement.name.value = userInfo.getUserInfo().name;
-        formElement.job.value = userInfo.getUserInfo().job;
-    },
+    // setFormInputs: (formElement) => {
+        
+    //     formElement.name.value = userInfo.getUserInfo().name;
+    //     formElement.job.value = userInfo.getUserInfo().job;
+    // },
 });
 
 editProfilePopup.setEventListeners();
