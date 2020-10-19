@@ -18,7 +18,7 @@ export default class Api {
             .then(this.getResponse)
     }
 
-    setUserInfo(data) {
+    setUserInfo({ name, about }) {
         return fetch(`${this._address}/${this._groupId}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -26,10 +26,10 @@ export default class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data.name,
-                about: data.job
-            })
+                name,
+                about
         })
+    })
             .then(this.getResponse)
     }
 

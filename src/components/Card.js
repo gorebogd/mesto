@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({data, handleCardClick, handleDeleteClick, handleLikeClick},userId, cardSelector) {
+    constructor({data, handleCardClick, handleDeleteClick, handleLikeClick}, userId, cardSelector) {
         this._likes = data.likes;
         this._cardId = data._id;
         this._name = data.name;
@@ -39,9 +39,7 @@ export default class Card {
     createCard() {
         this._card = this._getTemplate();
         const cardImage = this._card.querySelector('.cards__image');
-        // this._cardImage = this._card.querySelector('.cards__image');
         this._cardCaption = this._card.querySelector('.cards__title');
-        // this._cardLikes = this._card.querySelector('.cards__like-count');
         this._cardCaption.textContent = this._name;
         cardImage.src = this._link;
         cardImage.alt = this._name;

@@ -11,6 +11,8 @@ import PopupWithConfirm from "../components/PopupWithConfirm";
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const editAvatar = document.querySelector(".profile__avatar-container");
+const nameInput = document.querySelector(".popup__input-text_type_name");
+const jobInput = document.querySelector(".popup__input-text_type_job");
 const api = new Api({
     address: "https://mesto.nomoreparties.co/v1",
     groupId: `cohort-16`,
@@ -39,7 +41,8 @@ popupWithImage.setEventListeners();
 
 const popupWithConfirm = new PopupWithConfirm({
     popupSelector: ".popup_type_confirm",
-    formSubmitHandler: () => {}
+    formSubmitHandler: () => {
+    }
 });
 popupWithConfirm.setEventListeners();
 
@@ -81,7 +84,6 @@ const addCard = (cardData) => {
     cardList.addItem(card.createCard());
 };
 
-
 const cardList = new Section(".cards__grid");
 
 const editProfilePopup = new PopupWithForm({
@@ -93,34 +95,19 @@ const editProfilePopup = new PopupWithForm({
             about: data.job
         })
             .then((res) => {
-                userInfo.setUserInfo({
-                    name: res.name,
-                    job: res.about
-                })
+                userInfo.setUserInfo(res.name, res.about)
                 editProfilePopup.close();
             })
             .catch(err => console.log(err))
             .finally(() => editProfilePopup.renderLoading(false));
-        // api.setUserInfo(data)
-        //     .then((res) => {
-        //         userInfo.setUserInfo(res.name, res.about);
-        //         editProfilePopup.close();
-        //     })
-        //     .catch(err => console.log(err))
-        //     .finally(() => {
-        //         editProfilePopup.renderLoading(false);
-        //     });
-    },
-
-    // setFormInputs: (formElement) => {
-        
-    //     formElement.name.value = userInfo.getUserInfo().name;
-    //     formElement.job.value = userInfo.getUserInfo().job;
-    // },
+    }
 });
 
 editProfilePopup.setEventListeners();
 editButton.addEventListener("click", () => {
+    const currentUserInfo = userInfo.getUserInfo();
+    nameInput.value = currentUserInfo.name;
+    jobInput.value = currentUserInfo.job;
     editProfilePopup.open();
     editFormValidator.checkFormState();
 });
