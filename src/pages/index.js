@@ -95,7 +95,10 @@ const editProfilePopup = new PopupWithForm({
             about: data.job
         })
             .then((res) => {
-                userInfo.setUserInfo(res.name, res.about)
+                userInfo.setUserInfo({
+                    name: res.name,
+                    job: res.about
+                })
                 editProfilePopup.close();
             })
             .catch(err => console.log(err))
@@ -148,9 +151,13 @@ const editAvatarPopup = new PopupWithForm({
     popupSelector: ".popup_type_update-avatar",
     formSubmitHandler: (data) => {
         editAvatarPopup.renderLoading(true);
-        api.setUserAvatar(data)
+        api.setUserAvatar({
+            avatar: data.avatar
+        })
             .then((res) => {
-                userInfo.setAvatar = res.avatar;
+                userInfo.setUserInfo({
+                    avatar: res.avatar
+                });
                 editAvatarPopup.close();
             })
             .catch(err => console.log(err))
@@ -175,8 +182,12 @@ avatarFormValidator.enableValidation();
 Promise.all([api.getCards(), api.getUserInfo()])
     .then(([cards, userData]) => {
         userId = userData._id;
-        userInfo.setUserInfo(userData.name, userData.about);
-        userInfo.setAvatar(userData.avatar);
+        console.log(userData);
+        userInfo.setUserInfo({
+            name: userData.name,
+            job: userData.about,
+            avatar: userData.avatar
+        });
         cardList.renderItems({
             items: cards,
             renderer: (data) => {
